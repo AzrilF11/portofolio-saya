@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Azril Fadhillah | Portofolio Web Developer Minimalis</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome untuk Ikon Pelengkap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        softBg: '#FAF9F6',
+                        softSurface: '#FFFFFF',
+                        softSage: '#8FA998',
+                        softSageDark: '#6E8B78',
+                        softSageLight: '#EEF3F0',
+                        softSand: '#F2EFE9',
+                        softCharcoal: '#2D3134',
+                        softMuted: '#687076',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS untuk Efek Navbar Kapsul, Responsif HP & Animasi Halus -->
+    <style>
+        :root {
+            --bg-cream: #FAF9F6;
+            --sage-accent: #8FA998;
+            --sage-light: #EEF3F0;
+            --charcoal: #2D3134;
+        }
+
+        html {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        .capsule-nav {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.3s ease;
+        }
+
+        /* Efek hover hanya aktif di perangkat ber-mouse agar tidak nyangkut di layar sentuh HP */
+        @media (hover: hover) and (pointer: fine) {
+            .capsule-nav:hover {
+                transform: translateX(-50%) scale(0.955);
+                box-shadow: 0 10px 25px -5px rgba(143, 169, 152, 0.25);
+            }
+
+            .capsule-link:hover {
+                transform: scale(0.94);
+            }
+
+            .soft-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 16px 32px -12px rgba(45, 49, 52, 0.08);
+                border-color: #8FA998;
+            }
+        }
+
+        .capsule-link {
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.25s ease,
+                color 0.25s ease;
+        }
+
+        .capsule-link:active {
+            transform: scale(0.95);
+        }
+
+        .capsule-link.active {
+            background-color: #8FA998;
+            color: #FFFFFF;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .soft-card {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.35s ease;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-[#8FA998]/30 selection:text-[#2D3134]">
+
+    <!-- Dekorasi Latar Belakang Soft Minimalis -->
+    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div class="absolute -top-24 -left-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-[#8FA998]/12 blur-3xl"></div>
+        <div class="absolute top-1/3 -right-24 w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-[#E5DDD3]/40 blur-3xl"></div>
+        <div class="absolute -bottom-24 left-1/3 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-[#8FA998]/10 blur-3xl"></div>
+    </div>
+
+    <!-- =========================================================
+       NAVBAR KAPSUL (FLOATING PILL NAVBAR)
+  ========================================================== -->
+    <header>
+        <nav aria-label="Navigasi Utama"
+            class="capsule-nav fixed top-4 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-fit px-2 py-1.5 sm:px-2.5 sm:py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#E6E4DD] shadow-sm">
+            <ul class="flex items-center justify-center gap-0.5 sm:gap-2">
+                <li>
+                    <a href="#home" data-nav="home"
+                        class="capsule-link active block px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-sm font-medium text-[#2D3134] hover:bg-[#EEF3F0] whitespace-nowrap">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#tentang" data-nav="tentang"
+                        class="capsule-link block px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-sm font-medium text-[#2D3134] hover:bg-[#EEF3F0] whitespace-nowrap">
+                        Tentang Saya
+                    </a>
+                </li>
+                <li>
+                    <a href="#portofolio" data-nav="portofolio"
+                        class="capsule-link block px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-sm font-medium text-[#2D3134] hover:bg-[#EEF3F0] whitespace-nowrap">
+                        Portofolio
+                    </a>
+                </li>
+                <li>
+                    <a href="#keahlian" data-nav="keahlian"
+                        class="capsule-link block px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-sm font-medium text-[#2D3134] hover:bg-[#EEF3F0] whitespace-nowrap">
+                        Keahlian
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- =========================================================
+         SECTION 1: HOME (TEKS DI KIRI & GAMBAR DI KANAN)
+    ========================================================== -->
+        <section id="home"
+            class="min-h-dvh flex items-center pt-24 sm:pt-28 pb-14 sm:pb-16 px-4 sm:px-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center w-full">
+
+                <!-- Kolom Kiri: Teks Perkenalan -->
+                <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left reveal order-2 lg:order-1">
+                    <div
+                        class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#EEF3F0] border border-[#DCE5DF] text-[#567060] text-xs sm:text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-[#8FA998]"></span>
+                        <span>Terbuka untuk Kolaborasi &amp; Proyek Web</span>
+                    </div>
+
+                    <h1
+                        class="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#2D3134] leading-[1.15]">
+                        Halo, Saya <br class="hidden sm:inline" />
+                        <span class="text-[#6E8B78]">Azril Fadhillah</span>
+                    </h1>
+
+                    <p class="font-display text-base sm:text-xl font-medium text-[#5A6268]">
+                        Web Developer &amp; UI Design Enthusiast
+                    </p>
+
+                    <p class="text-sm sm:text-base text-[#687076] leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Saya senang merancang antarmuka website yang bersih, ringan, dan nyaman dipandang. Berfokus pada
+                        keseimbangan antara estetika minimalis dan struktur kode yang rapi.
+                    </p>
+
+                    <!-- Tombol Aksi Minimalis -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+                        <a href="#portofolio"
+                            class="w-full sm:w-auto px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-[#8FA998] hover:bg-[#7A9684] shadow-sm transition-all text-center">
+                            Lihat Portofolio
+                        </a>
+                        <a href="#tentang"
+                            class="w-full sm:w-auto px-7 py-3.5 rounded-full text-sm font-semibold text-[#2D3134] bg-white hover:bg-[#F2EFE9] border border-[#E5E2DC] transition-all text-center">
+                            Tentang Saya
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Gambar / Ilustrasi Profil Soft -->
+                <div class="lg:col-span-5 flex justify-center reveal order-1 lg:order-2">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[360px] lg:h-[360px]">
+                        <!-- Bingkai Dekoratif Soft di Belakang -->
+                        <div
+                            class="absolute inset-0 translate-x-2.5 translate-y-2.5 sm:translate-x-3 sm:translate-y-3 rounded-[2.25rem] sm:rounded-[2.5rem] bg-[#E3EBE6] border border-[#D4E0D8]">
+                        </div>
+
+                        <!-- Kontainer Gambar Utama -->
+                        <div
+                            class="relative w-full h-full rounded-[2.25rem] sm:rounded-[2.5rem] bg-white border border-[#E6E4DD] overflow-hidden shadow-sm flex items-center justify-center p-2.5 sm:p-4">
+                            <img id="profile-photo" src="img/fotodiri.jpeg"
+                                data-fallbacks='["./img/fotodiri.jpeg","./img/fotodiri.jpg","img/fotodiri.jpg","./img/fotodiri.png","img/fotodiri.png"]'
+                                alt="Foto Profil Azril Fadhillah"
+                                class="w-full h-full object-cover rounded-[1.75rem] sm:rounded-[2rem]" />
+                        </div>
+
+                        <!-- Badge Floating Minimalis -->
+                        <div
+                            class="absolute -bottom-3 -left-2 sm:-bottom-4 sm:-left-4 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-white/95 backdrop-blur-md border border-[#E6E4DD] shadow-sm flex items-center gap-2.5">
+                            <div
+                                class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#EEF3F0] text-[#6E8B78] flex items-center justify-center text-xs sm:text-sm">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-[#2D3134]">Clean &amp; Soft UI</p>
+                                <p class="text-[11px] text-[#687076]">Frontend &amp; Web Dev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================================================
+         SECTION 2: TENTANG SAYA
+    ========================================================== -->
+        <section id="tentang" class="py-16 sm:py-24 px-4 sm:px-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+                <!-- Kolom Kiri: Teks Tentang Saya -->
+                <div class="lg:col-span-6 space-y-5 reveal">
+                    <span class="inline-block text-xs font-semibold uppercase tracking-widest text-[#6E8B78]">
+                        01 — Tentang Saya
+                    </span>
+                    <h2 class="font-display text-2xl sm:text-4xl font-bold text-[#2D3134] leading-tight">
+                        Membangun Web dengan Pendekatan Sederhana &amp; Fungsional
+                    </h2>
+                    <p class="text-[#687076] leading-relaxed text-sm sm:text-base">
+                        Halo! Saya Azril, seorang pengembang web yang memiliki ketertarikan besar pada desain antarmuka
+                        minimalis dan pengalaman pengguna yang intuitif. Bagi saya, website yang baik bukan hanya
+                        berjalan tanpa hambatan, tetapi juga memberikan rasa nyaman bagi siapa pun yang mengunjunginya.
+                    </p>
+                    <p class="text-[#687076] leading-relaxed text-sm sm:text-base">
+                        Saat ini saya aktif mengasah kemampuan pemrograman web modern, eksplorasi sistem desain di
+                        Figma, serta membangun proyek-proyek kecil untuk memperkuat pemahaman logika dan arsitektur
+                        aplikasi.
+                    </p>
+
+                    <!-- Info Singkat -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-2">
+                        <div class="p-4 rounded-2xl bg-white border border-[#EAE8E1]">
+                            <p class="text-xs text-[#687076]">Domisili</p>
+                            <p class="font-display font-semibold text-sm text-[#2D3134] mt-0.5">Tangerang, Indonesia</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white border border-[#EAE8E1]">
+                            <p class="text-xs text-[#687076]">Fokus Saat Ini</p>
+                            <p class="font-display font-semibold text-sm text-[#2D3134] mt-0.5">Web Dev &amp; UI Design
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Card Berisi Hal yang Ingin Dipelajari -->
+                <div class="lg:col-span-6 reveal">
+                    <div class="rounded-3xl bg-white border border-[#E6E4DD] p-6 sm:p-9 shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-xs font-semibold uppercase tracking-wider text-[#6E8B78]">Learning
+                                    Roadmap</span>
+                                <h3 class="font-display text-xl sm:text-2xl font-bold text-[#2D3134] mt-1">
+                                    Hal yang Ingin Dipelajari
+                                </h3>
+                            </div>
+                            <div
+                                class="w-11 h-11 rounded-2xl bg-[#EEF3F0] text-[#6E8B78] flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-[#687076] mb-6 leading-relaxed">
+                            Beberapa topik dan teknologi yang sedang masuk dalam daftar eksplorasi dan pembelajaran saya
+                            ke depan:
+                        </p>
+
+                        <div class="space-y-3.5">
+                            <div
+                                class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] hover:border-[#8FA998] transition-colors">
+                                <div
+                                    class="w-8 h-8 rounded-xl bg-[#EEF3F0] text-[#6E8B78] flex items-center justify-center shrink-0 mt-0.5 text-sm">
+                                    <i class="fa-brands fa-react"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-sm text-[#2D3134]">React &amp; Next.js
+                                        Framework</h4>
+                                    <p class="text-xs text-[#687076] mt-0.5 leading-relaxed">Membangun aplikasi web
+                                        interaktif berbasis komponen dengan performa tinggi dan SEO ramah mesin pencari.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] hover:border-[#8FA998] transition-colors">
+                                <div
+                                    class="w-8 h-8 rounded-xl bg-[#EEF3F0] text-[#6E8B78] flex items-center justify-center shrink-0 mt-0.5 text-sm">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-sm text-[#2D3134]">UI/UX
+                                        Micro-Interactions &amp; Design System</h4>
+                                    <p class="text-xs text-[#687076] mt-0.5 leading-relaxed">Memperdalam animasi
+                                        antarmuka halus dan penyusunan komponen desain yang konsisten di Figma.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] hover:border-[#8FA998] transition-colors">
+                                <div
+                                    class="w-8 h-8 rounded-xl bg-[#EEF3F0] text-[#6E8B78] flex items-center justify-center shrink-0 mt-0.5 text-sm">
+                                    <i class="fa-solid fa-server"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-sm text-[#2D3134]">Spring Boot &amp; REST
+                                        API Architecture</h4>
+                                    <p class="text-xs text-[#687076] mt-0.5 leading-relaxed">Mengembangkan pemahaman
+                                        bahasa Java untuk pembuatan layanan backend dan integrasi database yang
+                                        terstruktur.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] hover:border-[#8FA998] transition-colors">
+                                <div
+                                    class="w-8 h-8 rounded-xl bg-[#EEF3F0] text-[#6E8B78] flex items-center justify-center shrink-0 mt-0.5 text-sm">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-sm text-[#2D3134]">Modern Deployment
+                                        &amp; CI/CD Workflow</h4>
+                                    <p class="text-xs text-[#687076] mt-0.5 leading-relaxed">Otomatisasi alur publikasi
+                                        proyek dari repository GitHub langsung menuju Vercel secara efisien.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================================================
+         SECTION 3: PORTOFOLIO YANG PERNAH DIKERJAKAN
+    ========================================================== -->
+        <section id="portofolio" class="py-16 sm:py-24 px-4 sm:px-8 max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-14 reveal">
+                <span class="inline-block text-xs font-semibold uppercase tracking-widest text-[#6E8B78]">
+                    02 — Portofolio
+                </span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-[#2D3134] mt-2">
+                    Proyek yang Pernah Dikerjakan
+                </h2>
+                <p class="text-[#687076] mt-3 text-sm sm:text-base leading-relaxed">
+                    Kumpulan karya pengembangan web dan eksplorasi antarmuka yang telah saya bangun dengan perhatian
+                    pada detail visual dan fungsionalitas.
+                </p>
+            </div>
+
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Kartu proyek dirender via JavaScript -->
+            </div>
+        </section>
+
+        <!-- =========================================================
+         SECTION 4: KEAHLIAN YANG DIPELAJARI (GRID 3x3)
+    ========================================================== -->
+        <section id="keahlian" class="py-16 sm:py-24 px-4 sm:px-8 max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-14 reveal">
+                <span class="inline-block text-xs font-semibold uppercase tracking-widest text-[#6E8B78]">
+                    03 — Keahlian
+                </span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-[#2D3134] mt-2">
+                    Keahlian yang Dipelajari
+                </h2>
+                <p class="text-[#687076] mt-3 text-sm sm:text-base leading-relaxed">
+                    Bahasa pemrograman, alat desain, serta platform deployment yang saya gunakan dan pelajari dalam
+                    proses pengembangan web.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 reveal">
+                <!-- 1. HTML -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 4L7.8 24.4L16 26.8L24.2 24.4L26 4H6Z" fill="#E44D26" />
+                            <path d="M16 5.8V24.9L22.6 23.1L24.1 5.8H16Z" fill="#F16529" />
+                            <path
+                                d="M16 13.4H12.5L12.2 10.6H16V7.9H9.3L9.4 8.6L10 16.1H16V13.4ZM16 20.5L15.9 20.5L12.9 19.7L12.7 17.5H10L10.3 21.8L15.9 23.4L16 23.3V20.5Z"
+                                fill="#EBEBEB" />
+                            <path
+                                d="M16 13.4V16.1H19.1L18.8 19.7L16 20.5V23.3L21.5 21.8L21.6 21.3L22.2 14.1L22.3 13.4H16ZM16 7.9V10.6H22.5L22.6 10L22.7 8.6L22.8 7.9H16Z"
+                                fill="white" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">HTML</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Struktur semantik halaman web yang rapi dan
+                        aksesibel.</p>
+                </div>
+
+                <!-- 2. CSS -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 4L7.8 24.4L16 26.8L24.2 24.4L26 4H6Z" fill="#1572B6" />
+                            <path d="M16 5.8V24.9L22.6 23.1L24.1 5.8H16Z" fill="#33A9DC" />
+                            <path
+                                d="M16 13.4H12.7L12.9 16.1H16V13.4ZM16 7.9H9.3L9.5 10.6H16V7.9ZM16 20.5L12.9 19.7L12.7 17.5H10L10.3 21.8L16 23.4V20.5Z"
+                                fill="#EBEBEB" />
+                            <path
+                                d="M19.3 16.1L19 19.7L16 20.5V23.4L21.6 21.8L22.3 13.4H16V16.1H19.3ZM22.7 7.9H16V10.6H22.5L22.7 7.9Z"
+                                fill="white" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">CSS</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Styling modern, Flexbox, Grid, dan animasi
+                        responsif.</p>
+                </div>
+
+                <!-- 3. Java -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.2 22.8C12.2 22.8 11.1 23.4 13 23.6C15.2 23.9 16.4 23.8 18.9 23.3C18.9 23.3 19.6 23.7 20.5 24C14.9 26.4 7.8 23.9 12.2 22.8Z"
+                                fill="#5382A1" />
+                            <path
+                                d="M11.5 19.7C11.5 19.7 10.3 20.6 12.2 20.8C14.6 21 16.5 21 19.8 20.4C19.8 20.4 20.3 20.9 21 21.1C14.2 23.1 6.7 21.3 11.5 19.7Z"
+                                fill="#5382A1" />
+                            <path
+                                d="M17.3 14.3C18.6 15.8 16.9 17.2 16.9 17.2C16.9 17.2 20.2 15.5 18.7 13.3C17.3 11.3 16.2 10.3 22 6.9C22 6.9 13.1 9.1 17.3 14.3Z"
+                                fill="#E76F00" />
+                            <path
+                                d="M23.8 25C23.8 25 24.6 25.7 22.9 26.2C19.6 27.2 9.2 27.5 6.3 26.2C5.3 25.8 7.2 25.1 7.8 25C8.5 24.8 8.9 24.9 8.9 24.9C7.6 24 0.7 26.6 5.4 27.4C18.1 29.4 28.6 26.5 23.8 25Z"
+                                fill="#5382A1" />
+                            <path
+                                d="M12.7 16.5C12.7 16.5 7.4 17.8 10.8 18.2C12.2 18.4 15.1 18.4 17.8 18.1C20 17.9 22.2 17.5 22.2 17.5C22.2 17.5 21.4 17.8 20.9 18.2C15.5 19.6 5.1 19 8.1 17.5C10.6 16.3 12.7 16.5 12.7 16.5Z"
+                                fill="#5382A1" />
+                            <path
+                                d="M19.4 4C19.4 4 21.3 5.9 17.6 8.8C14.6 11.2 16.9 12.5 17.6 14.1C15.8 12.5 14.5 11.1 15.4 9.8C16.7 7.9 20.3 7 19.4 4Z"
+                                fill="#E76F00" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">Java</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Pemrograman berorientasi objek (OOP) &amp;
+                        logika dasar backend.</p>
+                </div>
+
+                <!-- 4. Figma -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.5 27C14.433 27 16 25.433 16 23.5V20H12.5C10.567 20 9 21.567 9 23.5C9 25.433 10.567 27 12.5 27Z"
+                                fill="#0ACF83" />
+                            <path d="M9 16.5C9 14.567 10.567 13 12.5 13H16V20H12.5C10.567 20 9 18.433 9 16.5Z"
+                                fill="#A259FF" />
+                            <path d="M9 9.5C9 7.567 10.567 6 12.5 6H16V13H12.5C10.567 13 9 11.433 9 9.5Z"
+                                fill="#F24E1E" />
+                            <path d="M16 6H19.5C21.433 6 23 7.567 23 9.5C23 11.433 21.433 13 19.5 13H16V6Z"
+                                fill="#FF7262" />
+                            <path
+                                d="M23 16.5C23 18.433 21.433 20 19.5 20C17.567 20 16 18.433 16 16.5C16 14.567 17.567 13 19.5 13C21.433 13 23 14.567 23 16.5Z"
+                                fill="#1ABCFE" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">Figma</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Perancangan wireframe, UI mockup, dan
+                        prototipe interaktif.</p>
+                </div>
+
+                <!-- 5. Vercel -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 6L28 26H4L16 6Z" fill="#2D3134" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">Vercel</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Hosting dan deployment proyek web modern
+                        secara instan.</p>
+                </div>
+
+                <!-- 6. GitHub -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16 5C9.92487 5 5 9.92487 5 16C5 20.8615 8.15254 24.9854 12.5236 26.4408C13.0736 26.5419 13.2746 26.2023 13.2746 25.9108C13.2746 25.6498 13.2651 24.9585 13.2598 24.0414C10.1994 24.7062 9.55365 22.5663 9.55365 22.5663C9.05324 21.2953 8.3321 20.9568 8.3321 20.9568C7.33339 20.2742 8.40773 20.288 8.40773 20.288C9.512 20.3657 10.0929 21.4218 10.0929 21.4218C11.074 23.1027 12.6674 22.6171 13.2947 22.3358C13.3946 21.6251 13.6789 21.1401 13.9933 20.8651C11.5502 20.5875 8.98184 19.6435 8.98184 15.4281C8.98184 14.2273 9.41068 13.2454 10.1144 12.4762C10.001 12.1981 9.62362 11.0793 10.2223 9.56538C10.2223 9.56538 11.1456 9.26973 13.2473 10.693C14.1246 10.4491 15.0655 10.3271 16.0005 10.3228C16.9355 10.3271 17.8765 10.4491 18.755 10.693C20.8555 9.26973 21.7773 9.56538 21.7773 9.56538C22.3775 11.0793 22.0001 12.1981 21.8867 12.4762C22.5919 13.2454 23.0182 14.2273 23.0182 15.4281C23.0182 19.654 20.4457 20.5843 17.9949 20.8565C18.3895 21.1965 18.7412 21.868 18.7412 22.8948C18.7412 24.3663 18.7279 25.5533 18.7279 25.9108C18.7279 26.205 18.9263 26.5473 19.4841 26.4397C23.8519 24.9817 27 20.8604 27 16C27 9.92487 22.0751 5 16 5Z"
+                                fill="#2D3134" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">GitHub</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Manajemen kode sumber, kolaborasi tim, dan
+                        version control.</p>
+                </div>
+
+                <!-- 7. JavaScript -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="5" width="22" height="22" rx="4" fill="#F7DF1E" />
+                            <path
+                                d="M13.6 21.8C13.6 22.8 13 23.3 12 23.3C11.2 23.3 10.7 22.9 10.4 22.3L8.8 23.3C9.3 24.3 10.4 25 12.1 25C14.2 25 15.6 23.9 15.6 21.7V15.5H13.6V21.8ZM20.5 15.3C18.6 15.3 17.4 16.4 17.4 18C17.4 19.7 18.4 20.5 20 21.2L20.6 21.5C21.6 21.9 22.1 22.2 22.1 22.9C22.1 23.6 21.5 24 20.5 24C19.4 24 18.8 23.5 18.4 22.8L16.8 23.8C17.4 24.9 18.6 25.6 20.6 25.6C22.8 25.6 24.2 24.5 24.2 22.7C24.2 21 23.2 20.2 21.4 19.4L20.8 19.1C19.9 18.7 19.4 18.4 19.4 17.8C19.4 17.3 19.9 16.9 20.6 16.9C21.3 16.9 21.8 17.2 22.2 17.8L23.7 16.8C23.1 15.8 22 15.3 20.5 15.3Z"
+                                fill="#2D3134" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">JavaScript</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Interaktivitas DOM, manipulasi data, dan
+                        logika frontend.</p>
+                </div>
+
+                <!-- 8. Tailwind CSS -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16 9.5C13.3333 9.5 11.6667 10.8333 11 13.5C12 12.1667 13.1667 11.6667 14.5 12C15.2606 12.1902 15.8045 12.7422 16.4053 13.352C17.3834 14.3447 18.5159 15.5 21 15.5C23.6667 15.5 25.3333 14.1667 26 11.5C25 12.8333 23.8333 13.3333 22.5 13C21.7394 12.8098 21.1955 12.2578 20.5947 11.648C19.6166 10.6553 18.4841 9.5 16 9.5ZM11 15.5C8.33333 15.5 6.66667 16.8333 6 19.5C7 18.1667 8.16667 17.6667 9.5 18C10.2606 18.1902 10.8045 18.7422 11.4053 19.352C12.3834 20.3447 13.5159 21.5 16 21.5C18.6667 21.5 20.3333 20.1667 21 17.5C20 18.8333 18.8333 19.3333 17.5 19C16.7394 18.8098 16.1955 18.2578 15.5947 17.648C14.6166 16.6553 13.4841 15.5 11 15.5Z"
+                                fill="#38BDF8" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">Tailwind CSS</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Utility-first CSS untuk membangun antarmuka
+                        cepat dan konsisten.</p>
+                </div>
+
+                <!-- 9. Responsive Design -->
+                <div
+                    class="soft-card rounded-3xl bg-white border border-[#E6E4DD] p-6 flex flex-col items-center text-center">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-[#FAF9F6] border border-[#EFECE6] flex items-center justify-center mb-4 text-[#6E8B78] text-2xl">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-[#2D3134]">Responsive UI</h3>
+                    <p class="text-xs text-[#687076] mt-1.5 leading-relaxed">Tata letak adaptif yang nyaman di layar
+                        ponsel, tablet, maupun desktop.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================
+       FOOTER MINIMALIS
+  ========================================================== -->
+    <footer class="border-t border-[#EAE8E1] bg-white/60 py-8 sm:py-10 px-4 sm:px-8 mt-12">
+        <div
+            class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#687076]">
+            <p class="font-display font-medium text-[#2D3134]">
+                Azril Fadhillah <span class="text-[#8FA998]">•</span> <span id="year"></span>
+            </p>
+            <div class="flex items-center gap-5">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+                    class="hover:text-[#6E8B78] transition-colors text-lg">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/zril.fad?knvt=MW05NHpuc3RmbW5ucw%3D%3D&utm_source=qr" target="_blank"
+                    rel="noopener noreferrer" aria-label="Instagram"
+                    class="hover:text-[#6E8B78] transition-colors text-lg">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://figma.com" target="_blank" rel="noopener noreferrer" aria-label="Figma"
+                    class="hover:text-[#6E8B78] transition-colors text-lg">
+                    <i class="fa-brands fa-figma"></i>
+                </a>
+                <a href="#home"
+                    class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#EEF3F0] text-[#567060] hover:bg-[#8FA998] hover:text-white transition-colors">
+                    Gulir Ke Atas &uarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+       MODAL PRATINJAU DETAIL PORTOFOLIO
+  ========================================================== -->
+    <div id="project-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-[#2D3134]/45 backdrop-blur-xs">
+        <div
+            class="relative w-full max-w-xl max-h-[90dvh] overflow-y-auto rounded-3xl bg-white border border-[#E6E4DD] shadow-xl">
+            <button onclick="closeModal()" aria-label="Tutup Detail Proyek"
+                class="absolute top-3.5 right-3.5 z-10 w-9 h-9 rounded-full bg-white/95 text-[#2D3134] hover:bg-[#8FA998] hover:text-white border border-[#E6E4DD] flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="h-48 sm:h-64 w-full bg-[#F2EFE9] overflow-hidden">
+                <img id="modal-image" src="" alt="Pratinjau Proyek" class="w-full h-full object-cover" />
+            </div>
+
+            <div class="p-5 sm:p-8 space-y-4">
+                <span id="modal-tag"
+                    class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF3F0] text-[#567060]">
+                    Kategori
+                </span>
+                <h3 id="modal-title" class="font-display text-xl sm:text-2xl font-bold text-[#2D3134]">
+                    Judul Proyek
+                </h3>
+                <p id="modal-description" class="text-sm sm:text-base text-[#687076] leading-relaxed">
+                    Penjelasan detail proyek.
+                </p>
+
+                <div id="modal-tech" class="flex flex-wrap gap-2 pt-1"></div>
+
+                <div
+                    class="pt-4 border-t border-[#EFECE6] flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <a id="modal-demo" href="#" target="_blank" rel="noopener noreferrer"
+                        class="flex-1 text-center px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-[#8FA998] hover:bg-[#7A9684] transition-colors">
+                        Kunjungi Demo
+                    </a>
+                    <a id="modal-github" href="#" target="_blank" rel="noopener noreferrer"
+                        class="text-center px-5 py-2.5 rounded-full text-sm font-semibold text-[#2D3134] bg-[#FAF9F6] hover:bg-[#F2EFE9] border border-[#E6E4DD] transition-colors">
+                        <i class="fa-brands fa-github mr-1.5"></i>Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+       JAVASCRIPT: ANTI-HILANG FOTO, PORTOFOLIO, SCROLLSPY & ANIMASI
+  ========================================================== -->
+    <script>
+        // Helper fallback SVG agar gambar selalu tampil walau offline / path gagal
+        function createFallbackDataUrl(label) {
+            const safeText = String(label || 'Azril Fadhillah').slice(0, 28);
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+                <rect width="800" height="600" fill="#EEF3F0"/>
+                <circle cx="400" cy="255" r="90" fill="#DCE5DF"/>
+                <text x="400" y="272" text-anchor="middle" font-family="sans-serif" font-size="56" font-weight="700" fill="#567060">AF</text>
+                <text x="400" y="395" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="600" fill="#2D3134">${safeText}</text>
+            </svg>`;
+            return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+        }
+
+        // Pasang mekanisme fallback berlapis pada elemen <img>
+        function attachImageResilience(imgEl, fallbackList, labelText) {
+            let candidates = [];
+            try {
+                candidates = JSON.parse(imgEl.getAttribute('data-fallbacks') || '[]');
+            } catch (_) {
+                candidates = [];
+            }
+            if (Array.isArray(fallbackList)) {
+                candidates = fallbackList.concat(candidates);
+            }
+
+            let idx = 0;
+            const ultimateFallback = createFallbackDataUrl(labelText);
+
+            imgEl.addEventListener('error', function onErr() {
+                if (idx < candidates.length) {
+                    const nextSrc = candidates[idx++];
+                    if (nextSrc && imgEl.src !== nextSrc) {
+                        imgEl.src = nextSrc;
+                        return;
+                    }
+                }
+                imgEl.removeEventListener('error', onErr);
+                imgEl.src = ultimateFallback;
+            });
+
+            // Jika gambar sudah gagal sebelum listener terpasang
+            if (imgEl.complete && imgEl.naturalWidth === 0) {
+                imgEl.dispatchEvent(new Event('error'));
+            }
+        }
+
+        // Aktifkan ketahanan gambar untuk foto profil
+        const profileImg = document.getElementById('profile-photo');
+        if (profileImg) {
+            attachImageResilience(
+                profileImg,
+                ['./img/fotodiri.jpeg', './img/fotodiri.jpg', 'img/fotodiri.jpg', './img/fotodiri.png', 'img/fotodiri.png'],
+                'Azril Fadhillah'
+            );
+        }
+
+        // 1. DATA PROYEK PORTOFOLIO
+        const portfolioItems = [
+            {
+                id: 1,
+                title: "Warung Nasi Lumbung",
+                category: "Website Rumah Makan",
+                image: "img/rumahmakan.png",
+                fallbacks: ["./img/rumahmakan.png", "./img/rumahmakan.jpg", "img/rumahmakan.jpg"],
+                shortDesc: "Website rumah makan sederhana dengan desain bersih dan navigasi intuitif, menampilkan menu, lokasi, dan kontak.",
+                fullDesc: "Dirancang untuk membantu produktivitas sehari-hari tanpa gangguan visual. Pengguna dapat menambahkan daftar tugas, menandai progres selesai, serta mengelompokkan catatan berdasarkan kategori dengan transisi yang halus.",
+                tech: ["HTML", "CSS", "JavaScript", "Vercel"],
+                demoUrl: "https://warung-nasi-lumbung.vercel.app/",
+                githubUrl: "https://github.com/AzrilF11/Rumah-makan-.git"
+            },
+            {
+                id: 2,
+                title: "Layanan Pembayaran WiFi",
+                category: "Website Pembayaran WiFi",
+                image: "img/inetplus.png",
+                fallbacks: ["./img/inetplus.png", "./img/inetplus.jpg", "img/inetplus.jpg"],
+                shortDesc: "Website layanan pembayaran WiFI, dengan menggunakan basic web pembayaran dengan mudah dan simpel untuk di akses.",
+                fullDesc: "Website pembayaran WiFi dengan desain antarmuka bertema hangat dan minimalis. Dimulai dari perancangan wireframe dan prototipe di Figma, kemudian diimplementasikan menjadi halaman web responsif dengan animasi scroll lembut.",
+                tech: ["Figma", "HTML", "CSS", "GitHub"],
+                demoUrl: "https://pembayaran-wifi-web.vercel.app/",
+                githubUrl: "https://github.com/AzrilF11/billing-pembayaran-wifi.git"
+            },
+            {
+                id: 3,
+                title: "Web pembelian paket internet",
+                category: "Website Pemasangan Internet",
+                image: "img/mitranet.png",
+                fallbacks: ["./img/mitranet.png", "./img/mitranet.jpg", "img/mitranet.jpg"],
+                shortDesc: "Website pemasangan internet dengan desain bersih dan navigasi intuitif, menampilkan paket internet, lokasi, dan kontak.",
+                fullDesc: "Website pemasangan internet dengan desain bersih dan navigasi intuitif, menampilkan paket internet, lokasi, dan kontak.",
+                tech: ["Java", "HTML", "CSS", "GitHub"],
+                demoUrl: "https://mitranet-one.vercel.app/",
+                githubUrl: "https://github.com/AzrilF11/mitranet.git"
+            }
+        ];
+
+        // 2. RENDER KARTU PORTOFOLIO KE DALAM GRID
+        const portfolioGrid = document.getElementById('portfolio-grid');
+
+        portfolioItems.forEach((item) => {
+            const card = document.createElement('article');
+            card.className = "soft-card reveal rounded-3xl bg-white border border-[#E6E4DD] overflow-hidden flex flex-col";
+            card.innerHTML = `
+                <div class="relative h-48 sm:h-52 w-full bg-[#F2EFE9] overflow-hidden">
+                    <img
+                        src="${item.image}"
+                        alt="${item.title}"
+                        class="portfolio-img w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                    <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-xs font-medium bg-white/90 backdrop-blur-xs text-[#567060] border border-[#E6E4DD]">
+                        ${item.category}
+                    </span>
+                </div>
+
+                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-5">
+                    <div class="space-y-2.5">
+                        <h3 class="font-display text-lg font-bold text-[#2D3134] leading-snug">
+                            ${item.title}
+                        </h3>
+                        <p class="text-sm text-[#687076] leading-relaxed">
+                            ${item.shortDesc}
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-1.5">
+                            ${item.tech.map(t => `
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-[#FAF9F6] text-[#687076] border border-[#EFECE6]">
+                                    ${t}
+                                </span>
+                            `).join('')}
+                        </div>
+
+                        <button type="button" onclick="openModal(${item.id})" class="w-full py-2.5 px-4 rounded-2xl text-xs sm:text-sm font-semibold text-[#567060] bg-[#EEF3F0] hover:bg-[#8FA998] hover:text-white transition-colors">
+                            Lihat Detail Proyek
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const imgEl = card.querySelector('.portfolio-img');
+            attachImageResilience(imgEl, item.fallbacks, item.title);
+            portfolioGrid.appendChild(card);
+        });
+
+        // 3. MODAL DETAIL PORTOFOLIO
+        const modal = document.getElementById('project-modal');
+        const modalImg = document.getElementById('modal-image');
+
+        function openModal(id) {
+            const project = portfolioItems.find(p => p.id === id);
+            if (!project) return;
+
+            modalImg.src = project.image;
+            attachImageResilience(modalImg, project.fallbacks, project.title);
+
+            document.getElementById('modal-tag').textContent = project.category;
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-description').textContent = project.fullDesc;
+            document.getElementById('modal-demo').href = project.demoUrl;
+            document.getElementById('modal-github').href = project.githubUrl;
+
+            document.getElementById('modal-tech').innerHTML = project.tech.map(t => `
+                <span class="px-3 py-1 rounded-full text-xs font-medium bg-[#FAF9F6] text-[#2D3134] border border-[#E6E4DD]">
+                    ${t}
+                </span>
+            `).join('');
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // 4. SCROLLSPY: MENANDAI MENU AKTIF PADA NAVBAR KAPSUL SAAT SCROLL
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.capsule-link');
+
+        function updateActiveNav() {
+            const scrollPosition = window.scrollY + 180;
+
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+
+                if (scrollPosition >= top && scrollPosition < top + height) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('data-nav') === id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+        // 5. ANIMASI FADE-IN HALUS (INTERSECTION OBSERVER)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 6. TAHUN OTOMATIS DI FOOTER
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
